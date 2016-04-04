@@ -1,0 +1,16 @@
+## YAML Template.
+---
+# HTTP Server
+server:
+  port: 8095   # HTTP (Tomcat) port
+
+# Spring properties
+spring:
+  application:
+     name: restService
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
