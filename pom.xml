@@ -10,6 +10,8 @@
         <module>MicroserviceSkel1</module>
         <module>RestService</module>
         <module>SharedResources</module>
+        <module>Microservice_Login</module>
+        <module>Microservice_Users</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
