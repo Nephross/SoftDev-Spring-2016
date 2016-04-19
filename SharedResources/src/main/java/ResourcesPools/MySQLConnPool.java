@@ -7,7 +7,7 @@ package ResourcesPools;
 
 /**
  *
- * @author Nephross
+ * @author Peter
  */
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.ConnectionFactory;

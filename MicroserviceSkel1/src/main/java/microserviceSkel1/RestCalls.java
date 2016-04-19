@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import microserviceSkel1.domain.Event;
 import microserviceSkel1.domain.MoreStuff;
 import microserviceSkel1.domain.Stuff;
+import microserviceSkel1.domain.ConTestResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RestCalls {
     
     private Stuff stuff;
+    private ConTestResponse testResponse;
     
     @PostConstruct
     public void init(){
+        
         Set<MoreStuff> moreStuff = new HashSet<>();
         moreStuff.add(new MoreStuff("Bob"));
         moreStuff.add(new MoreStuff("Rob"));
@@ -39,6 +42,15 @@ public class RestCalls {
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
     public ResponseEntity<Stuff> hiThere(){
         return new ResponseEntity<>(stuff, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
+    public ResponseEntity<ConTestResponse> testDbConnnection(){
+        
+        
+        int outputInt = 0;
+        ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
+        return testconResult;
     }
     
     @RequestMapping(value = "/get_event", method = RequestMethod.GET)
