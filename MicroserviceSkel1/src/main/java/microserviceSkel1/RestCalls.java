@@ -12,6 +12,7 @@ import microserviceSkel1.domain.Event;
 import microserviceSkel1.domain.MoreStuff;
 import microserviceSkel1.domain.Stuff;
 import microserviceSkel1.domain.ConTestResponse;
+import microserviceSkel1.DBWrapper.DBWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class RestCalls {
     
     private Stuff stuff;
     private ConTestResponse testResponse;
+    private DBWrapper DbWrapper;
     
     @PostConstruct
     public void init(){
@@ -37,6 +39,7 @@ public class RestCalls {
         moreStuff.add(new MoreStuff("Bob"));
         moreStuff.add(new MoreStuff("Rob"));
         stuff = new Stuff("test", moreStuff);
+        DbWrapper = new DBWrapper();
     }
     
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
@@ -47,8 +50,8 @@ public class RestCalls {
     @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
     public ResponseEntity<ConTestResponse> testDbConnnection(){
         
-        
-        int outputInt = 0;
+        int outputInt = DbWrapper.test_Connection(1);
+        testResponse.setConnectionResponse(outputInt);
         ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
         return testconResult;
     }

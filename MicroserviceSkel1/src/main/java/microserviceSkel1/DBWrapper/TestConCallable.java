@@ -34,7 +34,7 @@ public class TestConCallable implements Callable<Integer> {
     public Integer call() throws Exception {
         try{
             conn = connPool.getConnection();
-            stmt = conn.prepareCall("CALL `atletik`.`test_dbConnection`(?)");
+            stmt = conn.prepareCall("CALL `HobbyShareDB`.`test_dbConnection`(?)");
             stmt.setInt(1, inputInt);
             try{
                 rset = stmt.executeQuery();

@@ -67,13 +67,13 @@ public class MySQLConnPool {
 		return this.dataSource;
 	}
 	
-	private void loadDriver() {
-		System.out.println("Loading underlying JDBC driver.");
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+	public void loadDriver() {
+            System.out.println("Loading underlying JDBC driver.");
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
 	}
 
 }
