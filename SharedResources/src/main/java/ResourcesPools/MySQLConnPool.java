@@ -31,7 +31,7 @@ public class MySQLConnPool {
         // arguments.
         //
         ConnectionFactory connectionFactory =
-            new DriverManagerConnectionFactory("jdbc:mysql:hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB", "Poodle", "poodlesareweak");
+            new DriverManagerConnectionFactory("jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?autoReconnect=true&useSSL=false", "Poodle", "poodlesareweak");
 
         //
         // Next we'll create the PoolableConnectionFactory, which wraps

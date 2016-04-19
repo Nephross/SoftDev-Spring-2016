@@ -17,6 +17,10 @@ public class ConTestResponse {
         this.connectionResponse = inputInt;
     }
     
+    public ConTestResponse(){
+        
+    }
+    
     public void setConnectionResponse(int inputInt){
         connectionResponse = inputInt;
     }

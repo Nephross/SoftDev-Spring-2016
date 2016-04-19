@@ -39,6 +39,7 @@ public class RestCalls {
         moreStuff.add(new MoreStuff("Bob"));
         moreStuff.add(new MoreStuff("Rob"));
         stuff = new Stuff("test", moreStuff);
+        testResponse = new ConTestResponse();
         DbWrapper = new DBWrapper();
     }
     

@@ -5,6 +5,7 @@
  */
 package restservice;
 
+import microserviceSkel1.domain.ConTestResponse;
 import microserviceSkel1.domain.Event;
 import microserviceSkel1.domain.Stuff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import restservice.RestserviceApplication.EventClient;
 import restservice.RestserviceApplication.StuffClient;
+import restservice.RestserviceApplication.ConTestClient;
 
 /**
  *
@@ -33,6 +35,15 @@ public class StuffClientController {
     
     @Autowired
     EventClient eventClient;
+    
+    @Autowired
+    ConTestClient ConTestClient;
+    
+    @RequestMapping("/testdbcon")
+    @ResponseBody
+    ConTestResponse testdbcon() {
+        return ConTestClient.testdbcon();
+    }
     
     @RequestMapping("/get_stuff")
     @ResponseBody
