@@ -9,6 +9,7 @@
         <module>EurekaServer</module>
         <module>MicroserviceSkel1</module>
         <module>RestService</module>
+        <module>SharedResources</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
