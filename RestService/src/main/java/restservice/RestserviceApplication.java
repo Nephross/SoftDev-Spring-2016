@@ -31,6 +31,7 @@ public class RestserviceApplication {
         
     }
     
+    //Call to the microservices through the client for this example.
     @FeignClient("microserviceSkel1")
     public interface ConTestClient {
         

@@ -39,7 +39,10 @@ public class RestCalls {
         moreStuff.add(new MoreStuff("Bob"));
         moreStuff.add(new MoreStuff("Rob"));
         stuff = new Stuff("test", moreStuff);
+        
+        //Response object that will be wrapped in a json
         testResponse = new ConTestResponse();
+        //DBWrapper handles the connection to DB with connection and thread pool.
         DbWrapper = new DBWrapper();
     }
     
@@ -48,10 +51,13 @@ public class RestCalls {
         return new ResponseEntity<>(stuff, HttpStatus.OK);
     }
     
+    //Method called from the restservice.
     @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
     public ResponseEntity<ConTestResponse> testDbConnnection(){
         
+        //DBWRapper returns the result from the db call, in this case an int, but can be any type.
         int outputInt = DbWrapper.test_Connection(1);
+        //Wraps the return value in a reponsetype, and converts to JSON
         testResponse.setConnectionResponse(outputInt);
         ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
         return testconResult;

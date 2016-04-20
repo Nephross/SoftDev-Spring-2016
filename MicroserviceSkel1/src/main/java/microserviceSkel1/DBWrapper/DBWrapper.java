@@ -29,6 +29,7 @@ public class DBWrapper {
     private static ResultSet rset = null;
     private static String ZERO = "";
 	
+    //Setup of the DBWrapper with connection and threadpool
     public DBWrapper () {
     	System.out.println("Creating new DBWrapper");
     	connpool = new MySQLConnPool();
@@ -36,21 +37,26 @@ public class DBWrapper {
     	executor = new SysThreadPool(10, 25);
         connect();
     }
+    
+    //Example method for using the connection and threadpool
     public int test_Connection(int inputInt) {
             if(inputInt < 0) {
                     throw new IllegalArgumentException();
             }
 
             int outputInt = -1;
-            connpool.loadDriver();
+            //This following line is the one where we send in the callable object we created into the threadpool executor to cue and
+            //then get the return value in the form of a Future<T>. 
             Future<Integer> testFuture = executor.submit(new TestConCallable(inputInt, connPool));
 
             try {
+                //recovering the contained int from the future.
                     outputInt = testFuture.get(); 
             }
             catch(Exception e){
                     e.printStackTrace();
             }
+            //And returning the value.
             return outputInt;
 	}
     
@@ -59,10 +65,6 @@ public class DBWrapper {
                     // This will load the MySQL driver, each DB has its own driver
                     Class.forName("com.mysql.jdbc.Driver");//If this line throws an exception you haven't set up the jdbc driver correctly on your pc
                     // Setup the connection with the DB
-
-                    //connection = DriverManager.getConnection("jdbc:mysql://91.100.101.181:3306/atletik?user=AtletikXP&password=AtletikXP.13A"); //Change password and database name
-                    //connection = DriverManager.getConnection("jdbc:mysql://db4free.net/flugz?user=prask&password="+ password + ""); //Change password and database name
-
             }
             catch(Exception e) {
                     System.out.println("Connection to SQL Database failed!");
