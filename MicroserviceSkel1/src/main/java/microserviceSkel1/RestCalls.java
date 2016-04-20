@@ -11,6 +11,8 @@ import javax.annotation.PostConstruct;
 import microserviceSkel1.domain.Event;
 import microserviceSkel1.domain.MoreStuff;
 import microserviceSkel1.domain.Stuff;
+import microserviceSkel1.domain.ConTestResponse;
+import microserviceSkel1.DBWrapper.DBWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,18 +29,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RestCalls {
     
     private Stuff stuff;
+    private ConTestResponse testResponse;
+    private DBWrapper DbWrapper;
     
     @PostConstruct
     public void init(){
+        
         Set<MoreStuff> moreStuff = new HashSet<>();
         moreStuff.add(new MoreStuff("Bob"));
         moreStuff.add(new MoreStuff("Rob"));
         stuff = new Stuff("test", moreStuff);
+        
+        //Response object that will be wrapped in a json
+        testResponse = new ConTestResponse();
+        //DBWrapper handles the connection to DB with connection and thread pool.
+        DbWrapper = new DBWrapper();
     }
     
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
     public ResponseEntity<Stuff> hiThere(){
         return new ResponseEntity<>(stuff, HttpStatus.OK);
+    }
+    
+    //Method called from the restservice.
+    @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
+    public ResponseEntity<ConTestResponse> testDbConnnection(){
+        
+        //DBWRapper returns the result from the db call, in this case an int, but can be any type.
+        int outputInt = DbWrapper.test_Connection(1);
+        //Wraps the return value in a reponsetype, and converts to JSON
+        testResponse.setConnectionResponse(outputInt);
+        ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
+        return testconResult;
     }
     
     @RequestMapping(value = "/get_event", method = RequestMethod.GET)

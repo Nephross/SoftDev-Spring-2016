@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import microserviceSkel1.domain.Event;
 import microserviceSkel1.domain.Stuff;
+import microserviceSkel1.domain.ConTestResponse;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -27,6 +28,15 @@ public class RestserviceApplication {
         
         @RequestMapping(method = RequestMethod.GET, value = "/hi")
         Stuff getStuff();
+        
+    }
+    
+    //Call to the microservices through the client for this example.
+    @FeignClient("microserviceSkel1")
+    public interface ConTestClient {
+        
+        @RequestMapping(method = RequestMethod.GET, value = "/testdbcon")
+        ConTestResponse testdbcon();
         
     }
     
