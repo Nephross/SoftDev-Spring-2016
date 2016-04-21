@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package microservice_User.DBWrapper;
+package microservice_User_DBWrapper;
 
 
 import java.sql.CallableStatement;

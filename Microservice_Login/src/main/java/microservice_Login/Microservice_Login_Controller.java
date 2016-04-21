@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package microservice_User;
+package microservice_Login;
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import microserviceSkel1.domain.Event;
-import microserviceSkel1.domain.MoreStuff;
-import microserviceSkel1.domain.Stuff;
-import microserviceSkel1.domain.ConTestResponse;
-import microservice_User.DBWrapper.DBWrapper;
+import microservice_Login_DBWrapper.DBWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Ronni
  */
 @Controller
-public class RestCalls {
+public class Microservice_Login_Controller {
     
     private Stuff stuff;
     private ConTestResponse testResponse;
