@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.Callable;
-import javax.sql.DataSource;
 /**
  *
  * @author Nephross
@@ -22,18 +21,16 @@ public class TestConCallable implements Callable<Integer> {
     private static Connection conn = null;
     private static CallableStatement stmt = null;
     private static ResultSet rset = null;
-    private DataSource connPool;
     private int inputInt;
 
-    public TestConCallable(int inputData, DataSource connPool) {
-        this.connPool = connPool;
+    public TestConCallable(int inputData, Connection inputConn) {
+        this.conn = inputConn;
         inputInt = inputData;
     }
 
     @Override
     public Integer call() throws Exception {
         try{
-            conn = connPool.getConnection();
             stmt = conn.prepareCall("CALL `HobbyShareDB`.`test_dbConnection`(?)");
             stmt.setInt(1, inputInt);
             try{
