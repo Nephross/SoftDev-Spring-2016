@@ -10,7 +10,7 @@
         <module>MicroserviceSkel1</module>
         <module>RestService</module>
         <module>Microservice_Login</module>
-        <module>Microservice_Users</module>
+        <module>Microservice_User</module>
         <module>SharedResources</module>
     </modules>
     <properties>
