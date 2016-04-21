@@ -5,10 +5,12 @@
  */
 package microservice_User;
 
+import Domain.User;
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import microservice_User_DBWrapper.DBWrapper;
+import microservice_User_Domain.User_CreateUser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,22 +31,10 @@ public class Microservice_User_Controller {
     @PostConstruct
     public void init(){
         
-        Set<MoreStuff> moreStuff = new HashSet<>();
-        moreStuff.add(new MoreStuff("Bob"));
-        moreStuff.add(new MoreStuff("Rob"));
-        stuff = new Stuff("test", moreStuff);
-        
-        //Response object that will be wrapped in a json
-        testResponse = new ConTestResponse();
-        //DBWrapper handles the connection to DB with connection and thread pool.
         DbWrapper = new DBWrapper();
     }
     
-    @RequestMapping(value = "/hi", method = RequestMethod.GET)
-    public ResponseEntity<Stuff> hiThere(){
-        return new ResponseEntity<>(stuff, HttpStatus.OK);
-    }
-    
+       
     //Method called from the restservice.
     @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
     public ResponseEntity<ConTestResponse> testDbConnnection(){
@@ -57,18 +47,24 @@ public class Microservice_User_Controller {
         return testconResult;
     }
     
-    @RequestMapping(value = "/get_event", method = RequestMethod.GET)
-    public ResponseEntity<Event> getEvent(){
-        Event event = new Event("party", "Lots of partying", "IKEA", "now");
-        return new ResponseEntity<>(event, HttpStatus.OK);
+    @RequestMapping(value = "/User/get_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@RequestBody int userID){
+        User OutputUser = DbWrapper.getUser(userID);
+        return new ResponseEntity<User>(OutputUser, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/update_event", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Event> updateEvent(@RequestBody Event event){
-        System.out.println(event);
-        if(event != null){
-            event.setName(event.getName() + "1");
+    @RequestMapping(value = "/User/Create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateEvent(@RequestBody User_CreateUser inputUser){
+        User OutputUser = null;
+        if(inputUser != null){
+            OutputUser = DbWrapper.createUser(inputUser);
         }
-        return new ResponseEntity<>(event, HttpStatus.OK);
+        if(OutputUser != null){
+            return new ResponseEntity<User>(OutputUser, HttpStatus.OK);    
+        }
+        else{
+            return null;
+        }
+        
     }
 }

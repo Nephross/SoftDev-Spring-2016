@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import microservice_Login_Domain.Login_Attempt;
+import microservice_Login_Domain.Login_Response;
 
 /**
  *
@@ -24,28 +26,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class Microservice_Login_Controller {
     
-    private Stuff stuff;
-    private ConTestResponse testResponse;
     private DBWrapper DbWrapper;
     
     @PostConstruct
     public void init(){
-        
-        Set<MoreStuff> moreStuff = new HashSet<>();
-        moreStuff.add(new MoreStuff("Bob"));
-        moreStuff.add(new MoreStuff("Rob"));
-        stuff = new Stuff("test", moreStuff);
-        
-        //Response object that will be wrapped in a json
-        testResponse = new ConTestResponse();
-        //DBWrapper handles the connection to DB with connection and thread pool.
         DbWrapper = new DBWrapper();
     }
-    
-    @RequestMapping(value = "/hi", method = RequestMethod.GET)
-    public ResponseEntity<Stuff> hiThere(){
-        return new ResponseEntity<>(stuff, HttpStatus.OK);
-    }
+   
     
     //Method called from the restservice.
     @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
@@ -59,18 +46,12 @@ public class Microservice_Login_Controller {
         return testconResult;
     }
     
-    @RequestMapping(value = "/get_event", method = RequestMethod.GET)
-    public ResponseEntity<Event> getEvent(){
-        Event event = new Event("party", "Lots of partying", "IKEA", "now");
-        return new ResponseEntity<>(event, HttpStatus.OK);
+    @RequestMapping(value = "/Login/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Login_Response> attemptLogin(@RequestBody Login_Attempt login_Attempt){
+        boolean loggedIn = DbWrapper.attemptLogin(login_Attempt);
+        Login_Response login_Response = new Login_Response();
+        return new ResponseEntity<Login_Response>(login_Response, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/update_event", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Event> updateEvent(@RequestBody Event event){
-        System.out.println(event);
-        if(event != null){
-            event.setName(event.getName() + "1");
-        }
-        return new ResponseEntity<>(event, HttpStatus.OK);
-    }
+    
 }
