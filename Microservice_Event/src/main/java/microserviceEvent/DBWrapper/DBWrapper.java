@@ -6,6 +6,7 @@
 package microserviceEvent.DBWrapper;
 
 
+import ResourcesEvent.Event;
 import ResourcesPools.Super_DBWrapper;
 import java.util.concurrent.Future;
 
@@ -21,24 +22,24 @@ public class DBWrapper extends Super_DBWrapper {
     }
     
     //Example method for using the connection and threadpool
-    public int test_Connection(int inputInt) {
-            if(inputInt < 0) {
+    public Event selectEvent(int eventID) {
+            if(eventID < 0) {
                     throw new IllegalArgumentException();
             }
 
-            int outputInt = -1;
+            Event event = null;
             //This following line is the one where we send in the callable object we created into the threadpool executor to cue and
             //then get the return value in the form of a Future<T>. 
-            Future<Integer> testFuture = executor.submit(new TestConCallable(inputInt, getConnection()));
+            Future<Event> testFuture = executor.submit(new SelectEventCallable(eventID, getConnection()));
 
             try {
                 //recovering the contained int from the future.
-                    outputInt = testFuture.get(); 
+                    event = testFuture.get(); 
             }
             catch(Exception e){
                     e.printStackTrace();
             }
             //And returning the value.
-            return outputInt;
+            return event;
 	}	
 }
