@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import restservice.RestserviceApplication.EventClient;
 import restservice.RestserviceApplication.StuffClient;
 import restservice.RestserviceApplication.ConTestClient;
 
@@ -33,8 +32,6 @@ public class StuffClientController {
     @Autowired
     StuffClient stuffClient;
     
-    @Autowired
-    EventClient eventClient;
     
     @Autowired
     ConTestClient ConTestClient;
@@ -51,15 +48,15 @@ public class StuffClientController {
         return stuffClient.getStuff();
     }
     
-    @RequestMapping("/get_event")
-    @ResponseBody
-    Event getEvent() {
-        return eventClient.getEvent();
-    }
-    
-    @RequestMapping(method = RequestMethod.POST, value = "/update_event", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    Event updateEvent(@RequestBody Event event) {
-        return eventClient.updateEvent(event);
-    }
+//    @RequestMapping("/get_event")
+//    @ResponseBody
+//    Event getEvent() {
+//        return eventClient.getEvent();
+//    }
+//    
+//    @RequestMapping(method = RequestMethod.POST, value = "/update_event", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    Event updateEvent(@RequestBody Event event) {
+//        return eventClient.updateEvent(event);
+//    }
 }

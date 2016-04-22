@@ -40,14 +40,14 @@ public class RestserviceApplication {
         
     }
     
-    @FeignClient("microserviceSkel1")
-    public interface EventClient {
-        
-        @RequestMapping(method = RequestMethod.GET, value = "/get_event")
-        Event getEvent();
-        
-        @RequestMapping(method = RequestMethod.POST, value = "/update_event", consumes = MediaType.APPLICATION_JSON_VALUE)
-        Event updateEvent(@RequestBody Event event);
-        
-    }
+//    @FeignClient("microserviceSkel1")
+//    public interface EventClient {
+//        
+//        @RequestMapping(method = RequestMethod.GET, value = "/get_event")
+//        Event getEvent();
+//        
+//        @RequestMapping(method = RequestMethod.POST, value = "/update_event", consumes = MediaType.APPLICATION_JSON_VALUE)
+//        Event updateEvent(@RequestBody Event event);
+//        
+//    }
 }

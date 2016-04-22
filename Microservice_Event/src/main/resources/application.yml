@@ -2,12 +2,12 @@
 ---
 # HTTP Server
 server:
-  port: 8091   # HTTP (Tomcat) port
+  port: 8092   # HTTP (Tomcat) port
 
 # Spring properties
 spring:
   application:
-     name: microserviceSkel1
+     name: eventmicroservice
 
 # Discovery Server Access
 eureka:
