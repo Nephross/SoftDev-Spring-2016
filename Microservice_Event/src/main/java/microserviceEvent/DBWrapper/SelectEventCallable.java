@@ -47,10 +47,9 @@ public class SelectEventCallable implements Callable<Event>{
                 event.setDate(rset.getString("date"));
                 event.setLocation(rset.getString("location"));
                 event.setCatagoryID(rset.getInt("categoryID_FK"));
-                event.setPicturePath(rset.getString("file_location")); // ToDo find picture path
+                event.setPicturePath(rset.getString("file_location"));
                 event.setUserID(rset.getInt("userID_FK"));
                 event.setUserName(rset.getString("username"));
-                //todo add subcatids and messages
                 
                 
 
@@ -63,7 +62,7 @@ public class SelectEventCallable implements Callable<Event>{
             stmt = conn.prepareCall("CALL `HobbyShareDB`.`get_messages_by_eventID`(?)");
             stmt.setInt(1, eventID);
             try{
-                ArrayList<Message> messages = new ArrayList<Message>();
+                ArrayList<Message> messages = new ArrayList<>();
                 
                 rset = stmt.executeQuery();
                 while(rset.next()){
