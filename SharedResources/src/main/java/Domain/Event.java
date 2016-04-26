@@ -40,7 +40,7 @@ public class Event implements Serializable{
     @Column(name = "title")
     private String title;
     
-    @Column(name = "descreption")
+    @Column(name = "description")
     private String description;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,22 +62,11 @@ public class Event implements Serializable{
                 joinColumns = @JoinColumn(name="eventID_FK", referencedColumnName = "eventID"),
                 inverseJoinColumns = @JoinColumn(name="sub_categoryID_FK", referencedColumnName = "sub_categoryID")
                 )
-    private ArrayList<Sub_Category> subCatagories;
+    private List<Sub_Category> subCatagories;
     
-    @OneToMany(mappedBy="owner")
-    private ArrayList<Message> messages;
+    @OneToMany(mappedBy="event")
+    private List<Message> messages;
 
-    public Event(int userID, String title, String description, Date date, String location, int pictureID, int catagoryID, ArrayList<Sub_Category> subCatagories, ArrayList<Message> messages) {
-        this.userID = userID;
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.location = location;
-        this.pictureID = pictureID;
-        this.catagoryID = catagoryID;
-        this.subCatagories = subCatagories;
-        this.messages = messages;
-    }
 
     public Event() {
     }
@@ -146,19 +135,19 @@ public class Event implements Serializable{
         this.catagoryID = catagoryID;
     }
 
-    public ArrayList<Sub_Category> getSubCatagories() {
+    public List<Sub_Category> getSubCatagories() {
         return subCatagories;
     }
 
-    public void setSubCatagories(ArrayList<Sub_Category> subCatagories) {
+    public void setSubCatagories(List<Sub_Category> subCatagories) {
         this.subCatagories = subCatagories;
     }
 
-    public ArrayList<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(ArrayList<Message> Messages) {
+    public void setMessages(List<Message> Messages) {
         this.messages = Messages;
     }
 

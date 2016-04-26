@@ -8,7 +8,7 @@ package microserviceEvent.Repository;
 
 
 import java.util.List;
-import microserviceEvent.Event;
+import Domain.Event;
 import org.springframework.data.repository.CrudRepository;
 
 /**
