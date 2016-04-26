@@ -5,8 +5,8 @@
  */
 package microserviceEvent.DBWrapper;
 
-import ResourcesEvent.Event;
-import ResourcesEvent.Message;
+import Domain.Event;
+import Domain.Message;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

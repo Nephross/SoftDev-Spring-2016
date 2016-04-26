@@ -6,7 +6,7 @@
 package microserviceEvent.DBWrapper;
 
 
-import ResourcesEvent.Event;
+import Domain.Event;
 import ResourcesPools.Super_DBWrapper;
 import java.util.concurrent.Future;
 

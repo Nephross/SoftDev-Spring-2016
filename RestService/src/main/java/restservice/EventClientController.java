@@ -5,7 +5,7 @@
  */
 package restservice;
 
-import ResourcesEvent.Event;
+import Domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.RequestMapping;

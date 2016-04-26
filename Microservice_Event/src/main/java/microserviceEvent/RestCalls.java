@@ -6,7 +6,7 @@
 package microserviceEvent;
 
 import javax.annotation.PostConstruct;
-import ResourcesEvent.Event;
+import Domain.Event;
 import microserviceEvent.DBWrapper.DBWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
