@@ -6,8 +6,8 @@
 package microserviceEvent;
 
 import javax.annotation.PostConstruct;
-import Domain.Event;
-import microserviceEvent.DBWrapper.DBWrapper;
+import microserviceEvent.Repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,20 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RestCalls {
     
     
-    private DBWrapper DbWrapper;
+    @Autowired
+    private EventRepository eventRepository;
     
     @PostConstruct
     public void init(){
-        DbWrapper = new DBWrapper();
+        
     }
     
-    
+    // call with http://localhost:8092/select_event?eventID=1
     @RequestMapping(value = "/select_event", method = RequestMethod.GET, params = {"eventID"})
-    public @ResponseBody ResponseEntity<Event> updateEvent(@RequestParam(value = "eventID") int eventID){
-        Event event = DbWrapper.selectEvent(eventID);
+    public @ResponseBody ResponseEntity<Event> selectEvent(@RequestParam(value = "eventID") int eventID){
+        Event event = eventRepository.findOne(eventID);
         
-        ResponseEntity<Event> testconResult = new ResponseEntity<>(event, HttpStatus.OK);
-        return testconResult;
+        ResponseEntity<Event> selectEvent = new ResponseEntity<>(event, HttpStatus.OK);
+        return selectEvent;
     }
     
 }

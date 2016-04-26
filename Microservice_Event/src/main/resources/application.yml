@@ -8,9 +8,19 @@ server:
 spring:
   application:
      name: eventmicroservice
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?useSSL=false
+      username: Poodle
+      password: poodlesareweak
+  jpa:
+      show-sql: true  
+      hibernate:
+          naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
 
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8090/eureka/
+

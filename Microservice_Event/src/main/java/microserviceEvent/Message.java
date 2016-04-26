@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package microserviceEvent;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "Message")
+@Table(name = "Messages")
 public class Message implements Serializable{
     
     @Id @GeneratedValue
@@ -37,22 +38,14 @@ public class Message implements Serializable{
     @Column(name = "date")
     private Date date;
     
-    @Column(name = "eventID_FK")
-    private String eventID;
     
     @Column(name = "userID_FK")
     private String userID;
     
     @ManyToOne
     @JoinColumn(name = "eventID_FK")
+    @JsonIgnore
     private Event event;
-
-    public Message(String messageContent, Date date, String eventID, String userID) {
-        this.messageContent = messageContent;
-        this.date = date;
-        this.eventID = eventID;
-        this.userID = userID;
-    }
 
     public Message() {
     }
@@ -79,13 +72,7 @@ public class Message implements Serializable{
         this.date = date;
     }
 
-    public String getEventID() {
-        return eventID;
-    }
 
-    public void setEventID(String eventID) {
-        this.eventID = eventID;
-    }
 
     public String getUserID() {
         return userID;
