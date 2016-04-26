@@ -10,10 +10,28 @@ package microservice_User_Domain;
  * @author Nephross
  */
 public class User_CreateUser {
-   
+    
     private String userName;
     private String email;
     private int pictureID;
     private String password;
+    
+    public String getUserName(){
+        return this.userName;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public int getPictureID(){
+        return this.pictureID;
+                
+    }
+    
+    public String getPassword() {
+        return this.password;
+    }
+    
     
 }

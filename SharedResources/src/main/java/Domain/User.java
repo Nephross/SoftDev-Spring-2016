@@ -31,6 +31,16 @@ public class User implements Serializable{
     @Column(name = "pictureID_FK")
     private int pictureID;
     
+    public User(String inputUsername, String inputEmail, int inputPictureId){
+        this.userName = inputUsername;
+        this.email = inputEmail;
+        this.pictureID = inputPictureId;
+    }
+    
+    public User(){
+        
+    }
+    
     public int getUserID(){
         return this.userID;
     }

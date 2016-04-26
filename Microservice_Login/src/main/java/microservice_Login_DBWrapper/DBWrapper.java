@@ -6,8 +6,13 @@
 package microservice_Login_DBWrapper;
 
 
+import Domain.User;
 import ResourcesPools.Super_DBWrapper;
-import java.util.concurrent.Future;
+import microservice_Login_Domain.Login_Attempt;
+import microservice_Login_Domain.Login_Response;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 /**
@@ -17,28 +22,46 @@ import java.util.concurrent.Future;
 public class DBWrapper extends Super_DBWrapper {
     	
     public DBWrapper () {
-    	super();
+        super();
     }
     
-    //Example method for using the connection and threadpool
-    public int test_Connection(int inputInt) {
-            if(inputInt < 0) {
-                    throw new IllegalArgumentException();
-            }
+    public Login_Response attemptLogin(Login_Attempt login_attempt){
+        Login_Response response = null;
+        
+        Session session = null;  
+        Transaction tx = null;  
 
-            int outputInt = -1;
-            //This following line is the one where we send in the callable object we created into the threadpool executor to cue and
-            //then get the return value in the form of a Future<T>. 
-            Future<Integer> testFuture = executor.submit(new Login_Callable(inputInt, getConnection()));
+        try {  
+            session = getSession();  
+            tx = session.beginTransaction();  
+            //some action  
 
-            try {
-                //recovering the contained int from the future.
-                    outputInt = testFuture.get(); 
+
+            Query query = session.createSQLQuery("CALL attemptLogin(:inUsername, :pass)").addEntity(User.class)
+                                                                              .setParameter("inUsername", login_attempt.getUserName())
+                                                                              .setParameter("pass", login_attempt.getPassword());
+
+            User output = null;    
+            output = (User) query.uniqueResult();
+            
+            if(output != null){
+                response = new Login_Response(output, true);
             }
-            catch(Exception e){
-                    e.printStackTrace();
+            else{
+                response = new Login_Response(null, false);
             }
-            //And returning the value.
-            return outputInt;
-	}	
+            
+            tx.commit();
+            
+        }
+        catch (Exception ex) {  
+            ex.printStackTrace();  
+            tx.rollback();  
+        }  
+        finally {
+            session.close();
+        }  
+        
+        return response;
+    }	
 }
