@@ -18,16 +18,26 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Category")
-public class Category implements Serializable{
+@Table(name = "Picture")
+public class Picture implements Serializable {
     
     @Id @GeneratedValue
-    @Column(name = "categoryID")
-    private int categoryID;
+    @Column(name = "pictureID")
+    private int pictureID;
     
-    @Column(name = "name")
-    private String name;
+    @Column(name = "file_location")
+    private String fileLocation;
     
-    @Column(name = "default_picture_FK")
-    private int defaultPictureID;
+        
+    public void setfileLocation(String inputPath) {
+        this.fileLocation = inputPath;
+    }
+    
+    public int getPictureID() {
+        return this.pictureID;
+    }
+    
+    public String getFileLocaiton() {
+        return this.fileLocation;
+    }
 }

@@ -5,34 +5,59 @@
  */
 package Domain;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author znake
  */
-public class Event {
+
+@Entity
+@Table(name = "Event")
+public class Event implements Serializable{
+    
+    @Id @GeneratedValue
+    @Column(name = "userID")
     private int eventID;
+    
+    @Column(name = "userID_FK")
     private int userID;
-    private String userName;
+    
+    @Column(name = "title")
     private String title;
+    
+    @Column(name = "descreption")
     private String description;
-    private String date;
+    
+    @Column(name = "date")
+    private Date date;
+    
+    @Column(name = "location")
     private String location;
-    private String picturePath;
+    
+    @Column(name = "pictureID_FK")
+    private int pictureID;
+    
+    @Column(name = "categoryID_FK")
     private int catagoryID;
+    
     private ArrayList<Integer> subCatagoryIDs;
     private ArrayList<Message> Messages;
 
-    public Event(int eventID, int userID, String userName, String title, String description, String date, String location, String picturePath, int catagoryID, ArrayList<Integer> subCatagoryIDs, ArrayList<Message> Messages) {
-        this.eventID = eventID;
+    public Event(int userID, String title, String description, Date date, String location, int pictureID, int catagoryID, ArrayList<Integer> subCatagoryIDs, ArrayList<Message> Messages) {
         this.userID = userID;
-        this.userName = userName;
         this.title = title;
         this.description = description;
         this.date = date;
         this.location = location;
-        this.picturePath = picturePath;
+        this.pictureID = pictureID;
         this.catagoryID = catagoryID;
         this.subCatagoryIDs = subCatagoryIDs;
         this.Messages = Messages;
@@ -43,14 +68,11 @@ public class Event {
 
     
     
-    
     public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
-    }
+    
 
     public int getUserID() {
         return userID;
@@ -76,11 +98,11 @@ public class Event {
         this.description = description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -92,12 +114,12 @@ public class Event {
         this.location = location;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public int getPicturePath() {
+        return pictureID;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPicturePath(int pictureID) {
+        this.pictureID = pictureID;
     }
 
     public int getCatagoryID() {
@@ -124,15 +146,6 @@ public class Event {
         this.Messages = Messages;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    
 
 }
 

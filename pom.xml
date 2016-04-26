@@ -11,6 +11,7 @@
         <module>RestService</module>
         <module>SharedResources</module>
         <module>Microservice_Event</module>
+        <module>Microservice_User</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

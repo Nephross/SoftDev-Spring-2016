@@ -5,10 +5,22 @@
  */
 package Domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author Nephross
  */
+
+@Entity
+@Table(name = "Event_Sub")
 public class Event_Sub {
     
+    @Column(name = "eventID_FK")
+    private int eventID_FK;
+    
+    @Column(name = "sub_categoryID_FK")
+    private int sub_categoryID_FK;
 }

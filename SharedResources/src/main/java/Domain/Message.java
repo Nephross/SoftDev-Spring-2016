@@ -5,20 +5,40 @@
  */
 package Domain;
 
+import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author znake
  */
-public class Message {
+
+@Entity
+@Table(name = "Message")
+public class Message implements Serializable{
     
-    private String messageID;
+    @Id @GeneratedValue
+    @Column(name = "messageID")
+    private int messageID;
+    
+    @Column(name = "message_content")
     private String messageContent;
-    private String date;
+    
+    @Column(name = "date")
+    private Date date;
+    
+    @Column(name = "eventID_FK")
     private String eventID;
+    
+    @Column(name = "userID_FK")
     private String userID;
 
-    public Message(String messageID, String messageContent, String date, String eventID, String userID) {
-        this.messageID = messageID;
+    public Message(String messageContent, Date date, String eventID, String userID) {
         this.messageContent = messageContent;
         this.date = date;
         this.eventID = eventID;
@@ -29,14 +49,11 @@ public class Message {
     }
 
         
-    public String getMessageID() {
+    public int getMessageID() {
         return messageID;
     }
 
-    public void setMessageID(String messageID) {
-        this.messageID = messageID;
-    }
-
+   
     public String getMessageContent() {
         return messageContent;
     }
@@ -45,11 +62,11 @@ public class Message {
         this.messageContent = messageContent;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
