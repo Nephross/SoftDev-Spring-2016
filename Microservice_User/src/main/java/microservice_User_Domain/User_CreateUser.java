@@ -10,7 +10,7 @@ package microservice_User_Domain;
  * @author Nephross
  */
 public class User_CreateUser {
-    private int userID;
+   
     private String userName;
     private String email;
     private int pictureID;
