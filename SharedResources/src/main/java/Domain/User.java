@@ -5,6 +5,7 @@
  */
 package Domain;
 
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
  *
  * @author Nephross
  */
+
 @Entity
 @Table(name = "User")
 public class User implements Serializable{
@@ -52,8 +54,9 @@ public class User implements Serializable{
     public void setEmail(String inputEmail){
         this.email = inputEmail;
     }
-    
+
     public void setPictureId(int inputId){
         this.pictureID = inputId;
     }
+
 }

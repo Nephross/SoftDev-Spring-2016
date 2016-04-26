@@ -12,6 +12,7 @@ package ResourcesPools;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.AnnotationConfiguration;
+import Domain.*;
 
 public class HibernateSessionManager {
     
