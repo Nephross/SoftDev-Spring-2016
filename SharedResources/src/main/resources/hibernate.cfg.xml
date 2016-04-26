@@ -11,7 +11,7 @@
 	
 		<!-- Database connection settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?autoReconnect=true&useSSL=false</property>
+		<property name="hibernate.connection.url">jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?;useSSL="false"</property>
 		<property name="hibernate.connection.username">Poodle</property>
 		<property name="hibernate.connection.password">poodlesareweak</property>
 		
@@ -25,13 +25,13 @@
 		<property name="show_sql">true</property>
 
 		<!-- The mapping information of entities -->
-		<mapping class="main.resources.Domain.User"/>
-		<mapping class="main.resources.Domain.Event"/>
-		<mapping class="main.resources.Domain.Category"/>
-		<mapping class="main.resources.Domain.Message"/>
-		<mapping class="main.resources.Domain.Event_Sub"/>
-		<mapping class="main.resources.Domain.Picture"/>
-		<mapping class="main.resources.Domain.Sub_Category"/>
+		<mapping class="Domain.User"/>
+		<mapping class="Domain.Event"/>
+		<mapping class="Domain.Category"/>
+		<mapping class="Domain.Message"/>
+		<mapping class="Domain.Event_Sub"/>
+		<mapping class="Domain.Picture"/>
+		<mapping class="Domain.Sub_Category"/>
 
 	</session-factory>
 </hibernate-configuration>
