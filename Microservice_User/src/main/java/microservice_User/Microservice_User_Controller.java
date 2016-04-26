@@ -34,18 +34,6 @@ public class Microservice_User_Controller {
         DbWrapper = new DBWrapper();
     }
     
-       
-    //Method called from the restservice.
-    @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
-    public ResponseEntity<ConTestResponse> testDbConnnection(){
-        
-        //DBWRapper returns the result from the db call, in this case an int, but can be any type.
-        int outputInt = DbWrapper.test_Connection(1);
-        //Wraps the return value in a reponsetype, and converts to JSON
-        testResponse.setConnectionResponse(outputInt);
-        ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
-        return testconResult;
-    }
     
     @RequestMapping(value = "/User/get_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@RequestBody int userID){
