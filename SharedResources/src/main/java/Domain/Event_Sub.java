@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,9 +15,8 @@ import javax.persistence.Table;
  * @author Nephross
  */
 
-@Entity
 @Table(name = "Event_Sub")
-public class Event_Sub {
+public class Event_Sub implements Serializable{
     
     @Column(name = "eventID_FK")
     private int eventID_FK;

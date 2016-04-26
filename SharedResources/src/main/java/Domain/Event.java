@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,6 +38,7 @@ public class Event implements Serializable{
     @Column(name = "descreption")
     private String description;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     private Date date;
     

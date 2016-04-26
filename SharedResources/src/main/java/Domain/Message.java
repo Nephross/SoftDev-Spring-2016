@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,6 +31,7 @@ public class Message implements Serializable{
     @Column(name = "message_content")
     private String messageContent;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     private Date date;
     

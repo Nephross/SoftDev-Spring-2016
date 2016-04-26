@@ -2,15 +2,37 @@
 <!DOCTYPE hibernate-configuration PUBLIC
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
-<session-factory>
-<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-<property name="hibernate.connection.url">jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?autoReconnect=true&useSSL=false</property>
-<property name="hibernate.connection.username">Poodle</property>
-<property name="hibernate.connection.password">poodlesareweak</property>
-<property name="show_sql">true</property>
-<mapping resource="User.hbm.xml"></mapping>
-</session-factory>
+	<session-factory>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+	
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://hobbysharedb.cbmgad52k2ov.eu-central-1.rds.amazonaws.com:3306/HobbyShareDB?autoReconnect=true&useSSL=false</property>
+		<property name="hibernate.connection.username">Poodle</property>
+		<property name="hibernate.connection.password">poodlesareweak</property>
+		
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">5</property>
+
+		<!-- Disable the second-level cache  -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- The mapping information of entities -->
+		<mapping class="Domain.User"/>
+		<mapping class="Domain.Event"/>
+		<mapping class="Domain.Category"/>
+		<mapping class="Domain.Message"/>
+		<mapping class="Domain.Event_Sub"/>
+		<mapping class="Domain.Picture"/>
+		<mapping class="Domain.Sub_Category"/>
+
+	</session-factory>
 </hibernate-configuration>
 
