@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author peter
  */
-@FeignClient("microservice_User")
+@FeignClient("microserviceUser")
 public interface UserClient {
     
     @RequestMapping(method = RequestMethod.GET, value = "/getUser", params = {"userID"})

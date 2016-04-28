@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author peter
  */
-@FeignClient("microservice_Login")
+@FeignClient("microserviceLogin")
 public interface LoginClient {
     
     @RequestMapping(method = RequestMethod.POST, value = "/attemptLogin", consumes = MediaType.APPLICATION_JSON_VALUE)
