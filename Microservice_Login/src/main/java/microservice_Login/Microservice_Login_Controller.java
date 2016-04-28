@@ -35,7 +35,7 @@ public class Microservice_Login_Controller {
     }
    
         
-    @RequestMapping(value = "/Login/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Login_Response> attemptLogin(@RequestBody Login_Attempt login_Attempt){
         Login_Response login_Response = DbWrapper.attemptLogin(login_Attempt);
         return new ResponseEntity<Login_Response>(login_Response, HttpStatus.OK);

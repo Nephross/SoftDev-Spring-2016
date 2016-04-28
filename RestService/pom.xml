@@ -60,6 +60,18 @@
             <artifactId>MicroserviceSkel1</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Microservice_User</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Microservice_Login</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 	
     <build>
