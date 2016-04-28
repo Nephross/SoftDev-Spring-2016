@@ -1,17 +1,20 @@
 package com.example;
 
 import restservice.RestserviceApplication;
-import org.junit.Test;
+
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = RestserviceApplication.class)
-public class MicroserviceSkel1ApplicationTests {
+public abstract class AbstractTest {
 
-	@Test
-	public void contextLoads() {
-	}
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+//	@Test
+//	public void contextLoads() {
+//	}
 
 }
