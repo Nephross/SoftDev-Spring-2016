@@ -9,7 +9,6 @@ package microservice_User_DBWrapper;
 import Domain.User;
 import ResourcesPools.Super_DBWrapper;
 import java.math.BigInteger;
-import java.util.concurrent.Future;
 import microservice_User_Domain.User_CreateUser;
 import org.hibernate.Query;
 import org.hibernate.Session;

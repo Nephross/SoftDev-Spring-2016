@@ -5,12 +5,15 @@
  */
 package Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +24,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "Message")
+@Table(name = "Messages")
 public class Message implements Serializable{
     
     @Id @GeneratedValue
@@ -35,18 +38,14 @@ public class Message implements Serializable{
     @Column(name = "date")
     private Date date;
     
-    @Column(name = "eventID_FK")
-    private String eventID;
     
     @Column(name = "userID_FK")
     private String userID;
-
-    public Message(String messageContent, Date date, String eventID, String userID) {
-        this.messageContent = messageContent;
-        this.date = date;
-        this.eventID = eventID;
-        this.userID = userID;
-    }
+    
+    @ManyToOne
+    @JoinColumn(name = "eventID_FK")
+    @JsonIgnore
+    private Event event;
 
     public Message() {
     }
@@ -73,13 +72,7 @@ public class Message implements Serializable{
         this.date = date;
     }
 
-    public String getEventID() {
-        return eventID;
-    }
 
-    public void setEventID(String eventID) {
-        this.eventID = eventID;
-    }
 
     public String getUserID() {
         return userID;
@@ -87,8 +80,15 @@ public class Message implements Serializable{
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }   
+    
+
+    public Event getEvent() {
+        return event;
     }
-    
-    
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
     
 }
