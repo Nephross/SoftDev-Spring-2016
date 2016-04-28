@@ -32,7 +32,7 @@ public class Sub_Category implements Serializable{
     
     @Column(name = "categoryID_FK")
     private int categoryID;
-    
+   
     public void setName(String inputName) {
         this.name = inputName;
     }

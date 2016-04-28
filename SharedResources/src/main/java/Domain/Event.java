@@ -8,10 +8,15 @@ package Domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +31,7 @@ import javax.persistence.TemporalType;
 public class Event implements Serializable{
     
     @Id @GeneratedValue
-    @Column(name = "userID")
+    @Column(name = "eventID")
     private int eventID;
     
     @Column(name = "userID_FK")
@@ -35,7 +40,7 @@ public class Event implements Serializable{
     @Column(name = "title")
     private String title;
     
-    @Column(name = "descreption")
+    @Column(name = "description")
     private String description;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,20 +56,17 @@ public class Event implements Serializable{
     @Column(name = "categoryID_FK")
     private int catagoryID;
     
-    private ArrayList<Integer> subCatagoryIDs;
-    private ArrayList<Message> Messages;
+    @ManyToMany
+    @JoinTable(
+                name="Event_Sub",
+                joinColumns = @JoinColumn(name="eventID_FK", referencedColumnName = "eventID"),
+                inverseJoinColumns = @JoinColumn(name="sub_categoryID_FK", referencedColumnName = "sub_categoryID")
+                )
+    private List<Sub_Category> subCatagories;
+    
+    @OneToMany(mappedBy="event")
+    private List<Message> messages;
 
-    public Event(int userID, String title, String description, Date date, String location, int pictureID, int catagoryID, ArrayList<Integer> subCatagoryIDs, ArrayList<Message> Messages) {
-        this.userID = userID;
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.location = location;
-        this.pictureID = pictureID;
-        this.catagoryID = catagoryID;
-        this.subCatagoryIDs = subCatagoryIDs;
-        this.Messages = Messages;
-    }
 
     public Event() {
     }
@@ -133,22 +135,26 @@ public class Event implements Serializable{
         this.catagoryID = catagoryID;
     }
 
-    public ArrayList<Integer> getSubCatagoryIDs() {
-        return subCatagoryIDs;
+    public List<Sub_Category> getSubCatagories() {
+        return subCatagories;
     }
 
-    public void setSubCatagoryIDs(ArrayList<Integer> subCatagoryIDs) {
-        this.subCatagoryIDs = subCatagoryIDs;
+    public void setSubCatagories(List<Sub_Category> subCatagories) {
+        this.subCatagories = subCatagories;
     }
 
-    public ArrayList<Message> getMessages() {
-        return Messages;
+    public List<Message> getMessages() {
+        return messages;
     }
 
-    public void setMessages(ArrayList<Message> Messages) {
-        this.Messages = Messages;
+    public void setMessages(List<Message> Messages) {
+        this.messages = Messages;
     }
 
-
+    public void addMessage(Message message){
+            this.messages.add(message);
+            if(message.getEvent() != this)
+                message.setEvent(this);
+            }
 }
 

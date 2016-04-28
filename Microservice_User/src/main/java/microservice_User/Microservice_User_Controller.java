@@ -6,8 +6,6 @@
 package microservice_User;
 
 import Domain.User;
-import java.util.HashSet;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import microservice_User_DBWrapper.DBWrapper;
 import microservice_User_Domain.User_CreateUser;
@@ -35,14 +33,14 @@ public class Microservice_User_Controller {
     }
     
     
-    @RequestMapping(value = "/User/get_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/get_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@RequestBody int userID){
         User OutputUser = DbWrapper.getUser(userID);
         return new ResponseEntity<User>(OutputUser, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/User/Create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateEvent(@RequestBody User_CreateUser inputUser){
+    @RequestMapping(value = "/Create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createUser(@RequestBody User_CreateUser inputUser){
         User OutputUser = null;
         if(inputUser != null){
             OutputUser = DbWrapper.createUser(inputUser);

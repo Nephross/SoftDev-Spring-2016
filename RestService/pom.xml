@@ -62,6 +62,7 @@
         </dependency>
         
         <dependency>
+<<<<<<< HEAD
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.3.6.Final</version>
@@ -74,6 +75,17 @@
             <version>4.1.6.RELEASE</version>
             <scope>test</scope>
             <type>jar</type>
+=======
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Microservice_User</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Microservice_Login</artifactId>
+            <version>${project.version}</version>
+>>>>>>> 05f6cc0e58d6b6b7af4864bfa238d4eee17c16ed
         </dependency>
     </dependencies>
 	

@@ -5,6 +5,7 @@
  */
 package microservice_Login;
 
+import Domain.User;
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -33,23 +34,10 @@ public class Microservice_Login_Controller {
         DbWrapper = new DBWrapper();
     }
    
-    
-    //Method called from the restservice.
-    @RequestMapping(value = "/testdbcon", method = RequestMethod.GET)
-    public ResponseEntity<ConTestResponse> testDbConnnection(){
         
-        //DBWRapper returns the result from the db call, in this case an int, but can be any type.
-        int outputInt = DbWrapper.test_Connection(1);
-        //Wraps the return value in a reponsetype, and converts to JSON
-        testResponse.setConnectionResponse(outputInt);
-        ResponseEntity<ConTestResponse> testconResult = new ResponseEntity<ConTestResponse>(testResponse, HttpStatus.OK);
-        return testconResult;
-    }
-    
-    @RequestMapping(value = "/Login/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Login_Response> attemptLogin(@RequestBody Login_Attempt login_Attempt){
-        boolean loggedIn = DbWrapper.attemptLogin(login_Attempt);
-        Login_Response login_Response = new Login_Response();
+        Login_Response login_Response = DbWrapper.attemptLogin(login_Attempt);
         return new ResponseEntity<Login_Response>(login_Response, HttpStatus.OK);
     }
     
