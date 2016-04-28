@@ -8,7 +8,11 @@ package microservice_User;
 import Domain.User;
 import javax.annotation.PostConstruct;
 import microservice_User_DBWrapper.DBWrapper;
+import microservice_User_DBWrapper.UserRepository;
 import microservice_User_Domain.User_CreateUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +26,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Ronni
  */
 @Controller
+@EntityScan(basePackageClasses = Domain.User.class)
+@Configuration
 public class Microservice_User_Controller {
     
     private DBWrapper DbWrapper;
+    
+    @Autowired
+    private UserRepository userRepository;
     
     @PostConstruct
     public void init(){
@@ -35,7 +44,7 @@ public class Microservice_User_Controller {
     
     @RequestMapping(value = "/get_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@RequestBody int userID){
-        User OutputUser = DbWrapper.getUser(userID);
+        User OutputUser = userRepository.findOne(userID);
         return new ResponseEntity<User>(OutputUser, HttpStatus.OK);
     }
     

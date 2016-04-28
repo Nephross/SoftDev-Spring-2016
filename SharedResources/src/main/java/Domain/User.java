@@ -21,7 +21,8 @@ public class User implements Serializable{
     @Id @GeneratedValue
     @Column(name = "userID")
     private int userID;
-    
+
+   
     @Column(name = "username")
     private String userName;
     
@@ -55,6 +56,14 @@ public class User implements Serializable{
     
     public int getPictureID(){
         return this.pictureID;
+    }
+    
+     public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setPictureID(int pictureID) {
+        this.pictureID = pictureID;
     }
     
     public void setUserName(String inputName){
