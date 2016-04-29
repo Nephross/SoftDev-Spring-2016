@@ -40,29 +40,31 @@
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
             <version>1.0.6.RELEASE</version>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-ribbon</artifactId>            
             <version>1.0.6.RELEASE</version>
         </dependency> 
+        
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
             <version>1.0.6.RELEASE</version>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
-            
         </dependency>
+        
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>MicroserviceSkel1</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <dependency>
-<<<<<<< HEAD
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.3.6.Final</version>
@@ -75,7 +77,9 @@
             <version>4.1.6.RELEASE</version>
             <scope>test</scope>
             <type>jar</type>
-=======
+        </dependency>
+        
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Microservice_User</artifactId>
             <version>${project.version}</version>
@@ -85,7 +89,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>Microservice_Login</artifactId>
             <version>${project.version}</version>
->>>>>>> 05f6cc0e58d6b6b7af4864bfa238d4eee17c16ed
         </dependency>
     </dependencies>
 	

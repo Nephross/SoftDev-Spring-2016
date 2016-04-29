@@ -26,8 +26,6 @@ public class Event {
     
     public Event() {
     }
-    
-    
 
     public String getName() {
         return name;
