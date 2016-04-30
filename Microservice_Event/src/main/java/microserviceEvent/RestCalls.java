@@ -30,7 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Ronni
  */
 @Controller
-@EntityScan(basePackageClasses=Domain.Event.class)
+@EntityScan(basePackageClasses=Domain.Event.class) //Important since the entity is in dependcy and when hibernate scan
+                                                    //this module.
 public class RestCalls {
     
     

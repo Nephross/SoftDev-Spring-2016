@@ -44,7 +44,7 @@ public class Message implements Serializable{
     
     @ManyToOne
     @JoinColumn(name = "eventID_FK")
-    @JsonIgnore
+    @JsonIgnore //Loopback block code.
     private Event event;
 
     public Message() {
