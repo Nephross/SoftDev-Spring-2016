@@ -6,7 +6,7 @@
 package restservice.clients;
 
 import Domain.User;
-import microservice_User_Domain.User_CreateUser;
+import Domain.User_CreateUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

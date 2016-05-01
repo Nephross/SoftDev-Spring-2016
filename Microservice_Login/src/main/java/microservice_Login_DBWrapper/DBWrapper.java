@@ -8,8 +8,8 @@ package microservice_Login_DBWrapper;
 
 import Domain.User;
 import ResourcesPools.Super_DBWrapper;
-import microservice_Login_Domain.Login_Attempt;
-import microservice_Login_Domain.Login_Response;
+import Domain.Login_Attempt;
+import Domain.Login_Response;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

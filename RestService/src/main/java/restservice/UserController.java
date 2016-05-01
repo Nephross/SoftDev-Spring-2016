@@ -8,9 +8,9 @@ package restservice;
 
 import Domain.User;
 import microserviceSkel1.domain.Event;
-import microservice_Login_Domain.Login_Attempt;
-import microservice_Login_Domain.Login_Response;
-import microservice_User_Domain.User_CreateUser;
+import Domain.Login_Attempt;
+import Domain.Login_Response;
+import Domain.User_CreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.MediaType;

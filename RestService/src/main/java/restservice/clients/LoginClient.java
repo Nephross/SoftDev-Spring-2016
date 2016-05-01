@@ -7,8 +7,8 @@ package restservice.clients;
 
 
 import Domain.User;
-import microservice_Login_Domain.Login_Attempt;
-import microservice_Login_Domain.Login_Response;
+import Domain.Login_Attempt;
+import Domain.Login_Response;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
