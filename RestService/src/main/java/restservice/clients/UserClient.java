@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("microserviceUser")
 public interface UserClient {
     
-    @RequestMapping(method = RequestMethod.GET, value = "/getUser", params = {"userID"})
+    @RequestMapping(method = RequestMethod.GET, value = "/get_User", params = {"userID"})
     User getUser(@RequestParam(value = "userID") int eventID);
     
-    @RequestMapping(method = RequestMethod.POST, value = "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/create_User", consumes = MediaType.APPLICATION_JSON_VALUE)
     User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser);
 }
 
