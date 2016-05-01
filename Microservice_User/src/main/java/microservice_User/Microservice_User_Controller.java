@@ -48,7 +48,7 @@ public class Microservice_User_Controller {
         return new ResponseEntity<User>(OutputUser, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/Create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createUser(@RequestBody User_CreateUser inputUser){
         User OutputUser = null;
         if(inputUser != null){
