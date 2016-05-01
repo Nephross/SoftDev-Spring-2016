@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package microservice_Login_Domain;
+package Domain;
 
 /**
  *

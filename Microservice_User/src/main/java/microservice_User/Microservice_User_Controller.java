@@ -9,7 +9,7 @@ import Domain.User;
 import javax.annotation.PostConstruct;
 import microservice_User_DBWrapper.DBWrapper;
 import microservice_User.Repository.UserRepository;
-import microservice_User_Domain.User_CreateUser;
+import Domain.User_CreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.http.HttpStatus;
