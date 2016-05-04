@@ -62,4 +62,12 @@ public class RestCalls {
         return selectEvent;
     }
     
+    
+    @RequestMapping(value = "/find_event", method = RequestMethod.GET, params = {"title"})
+    public @ResponseBody ResponseEntity<List<Event>> selectEvent(@RequestParam(value = "title") String title){
+        List<Event> events = eventRepository.findEventsByTitle(title);
+        
+        ResponseEntity<List<Event>> selectEvent = new ResponseEntity<>(events, HttpStatus.OK);
+        return selectEvent;
+    }
 }
