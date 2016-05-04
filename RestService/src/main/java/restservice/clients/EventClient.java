@@ -7,6 +7,8 @@ package restservice.clients;
 
 import Domain.Event;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,5 +22,8 @@ public interface EventClient {
         
     @RequestMapping(method = RequestMethod.GET, value = "/select_event", params = {"eventID"})
     Event getEvent(@RequestParam(value = "eventID") int eventID);
+    
+    @RequestMapping(value = "/create_event", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    Event createEvent(@RequestBody Event event);
     
 }

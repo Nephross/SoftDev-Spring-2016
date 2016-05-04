@@ -8,6 +8,9 @@ package restservice;
 import Domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,12 +31,16 @@ public class EventClientController {
     @Autowired
     EventClient eventClient;
     
-    @Autowired
-    RestserviceApplication.ConTestClient ConTestClient;
         
     
     @RequestMapping(method = RequestMethod.GET, value = "/select_event", params = {"eventID"})
-    public @ResponseBody Event updateEvent(@RequestParam(value = "eventID") int eventID) {
+    public @ResponseBody Event selectEvent(@RequestParam(value = "eventID") int eventID) {
         return eventClient.getEvent(eventID);
+    }
+    
+    @RequestMapping(value = "/create_event", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Event createEvent(@RequestBody Event event){
+        return eventClient.createEvent(event);
+    
     }
 }
