@@ -6,15 +6,19 @@
 package com.example.service;
 
 import Domain.Event;
+import Domain.User;
 import com.example.AbstractTest;
 
 import junit.framework.TestCase;
 import static junit.framework.TestCase.assertNotNull;
+import microservice_User.Repository.UserRepository;
+import microservice_User_DBWrapper.DBWrapper;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import restservice.UserController;
 import restservice.clients.EventClient;
 
 /**
@@ -22,23 +26,20 @@ import restservice.clients.EventClient;
  * @author Hisayo
  */
 @Transactional
-public class RestService extends AbstractTest{
+public class RestServiceUser extends AbstractTest{
     
-    @Autowired
-    private EventClient eventClient;
-    private Event event;
+    
+    private DBWrapper userDB;
+    
+    
    
-    @Before
-    //run Eureka server first.
-    //instance of the microservice event
-    
     @Test
-    public void testFindEvent() {
-        int eventId = 1;
-        eventClient.getEvent(eventId);
+    public void testFindOne() {
         
-        assertNotNull("failure - expected not null", logger);
-        TestCase.assertEquals("Event item : ","expected = Film 1", "actual = " + event.getTitle());
+        int userID = 1;
+        User user = userDB.getUser(userID);
+        assertNotNull("failure - expected not null",user);
+        TestCase.assertEquals("UserID : ",userID, user.getUserID());
     }
     
     

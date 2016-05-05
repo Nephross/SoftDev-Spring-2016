@@ -6,6 +6,7 @@
 package Domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class User implements Serializable{
     
     @Id @GeneratedValue
@@ -72,10 +74,6 @@ public class User implements Serializable{
     
     public void setEmail(String inputEmail){
         this.email = inputEmail;
-    }
-
-    public void setPictureId(int inputId){
-        this.pictureID = inputId;
     }
 
 }
