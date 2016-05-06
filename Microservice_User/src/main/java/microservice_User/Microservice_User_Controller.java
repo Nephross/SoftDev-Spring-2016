@@ -65,20 +65,24 @@ public class Microservice_User_Controller {
         
     }
     
+    //Edit user
     @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable("userID") int id, @RequestBody User inputUser){
-       
+       //cheking inputUser has input objects.
         System.out.println("user updating id is====> " + inputUser.getUserID());
         
+        //now currentUser find user id and the user objects. 
         User currentUser = userRepository.getOne(id);
-        System.out.println("inputUser id + user name =========>" + currentUser.getUserID());
+        System.out.println("inputUser id + user name ====>" + currentUser.getUserID());
         
+        //set new user information in the current user objects.
         currentUser.setUserName(inputUser.getUserName());
         currentUser.setEmail(inputUser.getEmail());
         currentUser.setPictureID(inputUser.getPictureID());
         
-        System.out.println("currentUser email =====> "+ currentUser.getEmail());
+        System.out.println("currentUser email ====> "+ currentUser.getEmail());
         
+        //save to database
         userRepository.save(currentUser);
         
         ResponseEntity<User> selectUser = new ResponseEntity<>(currentUser, HttpStatus.OK);
