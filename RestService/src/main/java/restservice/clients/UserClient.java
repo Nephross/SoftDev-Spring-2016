@@ -9,6 +9,7 @@ import Domain.User;
 import Domain.User_CreateUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
     
     @RequestMapping(method = RequestMethod.GET, value = "/get_User", params = {"userID"})
-    User getUser(@RequestParam(value = "userID") int eventID);
+    User getUser(@RequestParam(value = "userID") int userID);
     
     @RequestMapping(method = RequestMethod.POST, value = "/create_User", consumes = MediaType.APPLICATION_JSON_VALUE)
     User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser);
+    
+    @RequestMapping(method = RequestMethod.PUT, value = "/update_User/{userID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    User updateUser(@PathVariable("userID")int id,User inputUser);
 }
 

@@ -14,6 +14,7 @@ import Domain.User_CreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class UserController {
         
     @Autowired
     UserClient userClient;
-    
+     
     @Autowired
     LoginClient loginClient;
     
@@ -46,10 +47,16 @@ public class UserController {
         return userClient.getUser(userID);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/Create_User",  consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/create_User",  consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser){
         
         return userClient.createUser(inputUser);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, value = "/update_User/{userID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody User updateUser(@PathVariable("userID") int id, User inputUser){
+        System.out.println("restservice.UserController.updateUser()" + inputUser.getUserID());
+        return userClient.updateUser(id,inputUser);
     }
     
     @RequestMapping(method = RequestMethod.POST, value = "/Login",  consumes = MediaType.APPLICATION_JSON_VALUE)
