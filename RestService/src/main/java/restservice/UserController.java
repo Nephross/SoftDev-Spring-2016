@@ -7,7 +7,6 @@ package restservice;
 
 
 import Domain.User;
-import microserviceSkel1.domain.Event;
 import Domain.Login_Attempt;
 import Domain.Login_Response;
 import Domain.User_CreateUser;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +30,8 @@ import restservice.clients.UserClient;
 public class UserController {
     @Autowired
     LoadBalancerClient loadBalancerClient;
-        
+      
+    //User interface. Autowired instances user objects from domain.user
     @Autowired
     UserClient userClient;
      
@@ -52,10 +53,12 @@ public class UserController {
         
         return userClient.createUser(inputUser);
     }
-    
-    @RequestMapping(method = RequestMethod.PUT, value = "/update_User/{userID}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody User updateUser(@PathVariable("userID") int id, User inputUser){
-        System.out.println("restservice.UserController.updateUser()" + inputUser.getUserID());
+    //put method uses edit user object. @PathVariable("userID") has to be same as a value in url
+    @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody User updateUser(@PathVariable("userID") int id, @RequestBody User inputUser){
+        //checking user id is same as id from getUser
+        System.out.println("restservice.UserController.updateUser() updateUser id is =====> " + inputUser.getUserID());
+        //send to microserviceUser
         return userClient.updateUser(id,inputUser);
     }
     

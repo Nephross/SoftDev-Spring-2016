@@ -10,6 +10,7 @@ import Domain.User_CreateUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,16 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author peter
  */
+//Define client rest service. microserviceUser has @EnableFeignClients 
 @FeignClient("microserviceUser")
 public interface UserClient {
     
+    //specify endpoint and Http method
     @RequestMapping(method = RequestMethod.GET, value = "/get_User", params = {"userID"})
     User getUser(@RequestParam(value = "userID") int userID);
     
     @RequestMapping(method = RequestMethod.POST, value = "/create_User", consumes = MediaType.APPLICATION_JSON_VALUE)
     User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser);
     
-    @RequestMapping(method = RequestMethod.PUT, value = "/update_User/{userID}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    User updateUser(@PathVariable("userID")int id,User inputUser);
+    @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    User updateUser(@PathVariable("userID")int id,@RequestBody User inputUser);
 }
 
