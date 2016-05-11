@@ -17,7 +17,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Nephross
+ * @author Peter
  */
 public class DBWrapper extends Super_DBWrapper {
     	

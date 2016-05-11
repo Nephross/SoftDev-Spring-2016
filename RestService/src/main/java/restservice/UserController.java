@@ -37,9 +37,6 @@ public class UserController {
      
     @Autowired
     LoginClient loginClient;
-    
-    @Autowired
-    RestserviceApplication.ConTestClient ConTestClient;
         
         
     @RequestMapping(method = RequestMethod.GET, value = "/get_User", params = {"userID"})

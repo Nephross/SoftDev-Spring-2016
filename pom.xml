@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>EurekaServer</module>
-        <module>MicroserviceSkel1</module>
         <module>RestService</module>
         <module>Microservice_Login</module>
         <module>Microservice_User</module>
