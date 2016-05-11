@@ -6,11 +6,15 @@
 package Domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 /**
  *
@@ -20,6 +24,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Picture")
 public class Picture implements Serializable {
+
+//    @ManyToOne
+//    private User user;
     
     @Id @GeneratedValue
     @Column(name = "pictureID")
@@ -28,7 +35,7 @@ public class Picture implements Serializable {
     @Column(name = "file_location")
     private String fileLocation;
     
-        
+    
     public void setfileLocation(String inputPath) {
         this.fileLocation = inputPath;
     }

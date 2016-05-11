@@ -5,11 +5,13 @@
  */
 package microservice_User;
 
+import Domain.Picture;
 import Domain.User;
 import javax.annotation.PostConstruct;
 import microservice_User_DBWrapper.DBWrapper;
 import microservice_User.Repository.UserRepository;
 import Domain.User_CreateUser;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.core.env.Environment;
@@ -66,7 +68,7 @@ public class Microservice_User_Controller {
     }
     
     //Edit user
-    @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable("userID") int id, @RequestBody User inputUser){
        //cheking inputUser has input objects.
         System.out.println("user updating id is====> " + inputUser.getUserID());
@@ -85,7 +87,31 @@ public class Microservice_User_Controller {
         //save to database
         userRepository.save(currentUser);
         
-        ResponseEntity<User> selectUser = new ResponseEntity<>(currentUser, HttpStatus.OK);
+        ResponseEntity<User> selectUser = new ResponseEntity<>(inputUser, HttpStatus.OK);
         return selectUser;
+    }
+    
+    public void updatePicture(User currentUser, Picture picture){
+        
+        int currentPictureId = currentUser.getPictureID();
+        String inputPicture = picture.getFileLocaiton();
+        
+        if(currentPictureId == 0){
+            currentPictureId = 1;//if picture path doesnt come with update user, then just put pictureId "1".
+            return;
+        }
+        
+//        if(currentPictureId != 0){
+//            
+//            List<Picture> pictures = currentUser.getPictures();
+//            for(Picture p : pictures){
+//                if(inputPicture.equals(p.getFileLocaiton())){
+//                    currentUser.setPictureID(currentPictureId);
+//                    return;
+//                }
+//            }
+//            picture.setfileLocation(inputPicture);
+//        }
+        
     }
 }

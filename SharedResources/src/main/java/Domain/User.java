@@ -8,6 +8,7 @@ package Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -33,6 +34,9 @@ public class User implements Serializable{
     
     @Column(name = "pictureID_FK")
     private int pictureID;
+    
+//    @OneToMany(mappedBy = "user")
+//    private List<Picture> pictures;
     
     public User(String inputUsername, String inputEmail, int inputPictureId){
         this.userName = inputUsername;
@@ -75,5 +79,14 @@ public class User implements Serializable{
     public void setEmail(String inputEmail){
         this.email = inputEmail;
     }
+    
+//    public List<Picture> getPictures(){
+//        
+//        return pictures;
+//    }
+//    
+//    public void setPictures(List<Picture> pictures){
+//        this.pictures = pictures;
+//    }
 
 }
