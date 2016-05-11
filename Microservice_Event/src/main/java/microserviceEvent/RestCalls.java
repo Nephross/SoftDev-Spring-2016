@@ -6,10 +6,6 @@
 package microserviceEvent;
 
 import Domain.Event;
-import Domain.Message;
-import Domain.Sub_Category;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import microserviceEvent.Repository.EventRepository;
@@ -19,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,4 +59,47 @@ public class RestCalls {
         return selectEvent;
     }
     
+    
+    @RequestMapping(value = "/find_event", method = RequestMethod.GET, params = {"title"})
+    public @ResponseBody ResponseEntity<List<Event>> selectEvent(@RequestParam(value = "title") String title){
+        List<Event> events = eventRepository.findEventsByTitle(title);
+        
+        ResponseEntity<List<Event>> selectEvent = new ResponseEntity<>(events, HttpStatus.OK);
+        return selectEvent;
+    }
+    
+    @RequestMapping(value = "/update_event/{eventID}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Event> updateEvent(@PathVariable("eventID") int id, @RequestBody Event inputEvent){
+       
+        //urrentEvent find event id and the event objects. 
+        Event currentEvent = eventRepository.findOne(id);
+        System.out.println("currentEvent userID ====>" + currentEvent.getUserID());
+        
+        //set new event information in the current event objects.
+        currentEvent.setTitle(inputEvent.getTitle());
+        currentEvent.setDescription(inputEvent.getDescription());
+        currentEvent.setDate(inputEvent.getDate());
+        currentEvent.setLocation(inputEvent.getLocation());
+        
+        currentEvent.setCatagoryID(inputEvent.getCatagoryID());//FK category
+        currentEvent.setPicturePath(inputEvent.getPicturePath());//FK picture
+        
+        //save to database
+        eventRepository.save(currentEvent);
+        
+        ResponseEntity<Event> selectEvent = new ResponseEntity<>(currentEvent, HttpStatus.OK);
+        return selectEvent;
+    }
+    
+    
+    
+    public void updateMessage(Event currentEvent){ 
+        //if there is new message, so addMessage in the list
+       
+    }
+    
+    public void updatePicture(Event currentEvent){
+        //if picturePath is not same as existing pictureId, then make new picture and add in the event.
+       
+    }
 }

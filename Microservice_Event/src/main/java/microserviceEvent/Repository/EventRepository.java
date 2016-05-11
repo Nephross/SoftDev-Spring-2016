@@ -9,6 +9,7 @@ package microserviceEvent.Repository;
 
 import java.util.List;
 import Domain.Event;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -18,5 +19,7 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface EventRepository extends CrudRepository<Event, Integer>{
-    List<Event> findByTitle(String title);
+    
+    @Query("SELECT e FROM Event e where e.title like %?1%")
+    List<Event> findEventsByTitle(String title);
 }

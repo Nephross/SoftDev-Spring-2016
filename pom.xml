@@ -13,6 +13,7 @@
         <module>Microservice_User</module>
         <module>SharedResources</module>
         <module>Microservice_Event</module>
+        <module>TestClient</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
