@@ -10,8 +10,8 @@
         <module>RestService</module>
         <module>Microservice_Login</module>
         <module>Microservice_User</module>
-        <module>SharedResources</module>
         <module>Microservice_Event</module>
+        <module>SharedResources</module>
         <module>TestClient</module>
     </modules>
     <properties>
