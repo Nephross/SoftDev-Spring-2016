@@ -49,8 +49,8 @@ public class Microservice_User_Controller {
     @RequestMapping(value = "/get_User", method = RequestMethod.GET, params = {"userID"})
     public @ResponseBody ResponseEntity<User> getUser(@RequestParam(value = "userID")@RequestBody int userID){
         User OutputUser = userRepository.findOne(userID);
-        ResponseEntity<User> selectedUser = new ResponseEntity<>(OutputUser, HttpStatus.OK);
-        return selectedUser;
+         
+        return new ResponseEntity<>(OutputUser, HttpStatus.OK);
     }
     
     @RequestMapping(value = "/create_User", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -60,8 +60,8 @@ public class Microservice_User_Controller {
             OutputUser = DbWrapper.createUser(inputUser);
         }
         if(OutputUser != null){
-            ResponseEntity<User> createdUser = new ResponseEntity<>(OutputUser, HttpStatus.OK); 
-            return createdUser;   
+             
+            return new ResponseEntity<>(OutputUser, HttpStatus.OK); 
         }
         else{
             return null;

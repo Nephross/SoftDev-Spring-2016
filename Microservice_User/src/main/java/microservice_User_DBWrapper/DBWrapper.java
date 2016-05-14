@@ -52,7 +52,6 @@ public class DBWrapper extends Super_DBWrapper {
 
             query.executeUpdate();
             tx.commit();
-            //inputUser.getUserID?
             outputUser = new User(inputUser.getUserName(), inputUser.getEmail(),inputUser.getPictureID());
         }
         catch (Exception ex) {  
