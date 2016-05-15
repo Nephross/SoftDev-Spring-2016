@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <Category categoryID="1" name="Film" default_picture_FK="2"/>
+  <Event eventID="1" title="test_event_title" description="test_description" date="1970-01-01 01:00:01.0" location="test_location" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="2" title="test_event_title2" description="test_description2" date="1970-01-01 01:00:01.0" location="test_location2" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="3" title="test_event_title" description="test_description" date="1970-01-01 01:00:01.0" location="test_location" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="4" title="test_event_title" description="test_description" date="1970-01-01 01:00:01.0" location="test_location" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="5" title="test_event_title" description="test_description" date="1970-01-01 01:00:01.0" location="test_location" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="6" title="title89" description="event6" date="2016-04-27 16:04:04.0" location="Frederiksberg" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="7" title="new title" description="new event" date="2016-04-27 16:05:34.0" location="here" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="8" title="new title2" description="new event" date="2016-04-27 16:05:34.0" location="here" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="9" title="new title2" description="new event" date="2016-04-27 16:05:34.0" location="here" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="10" title="test_new3" description="test_description2" date="1970-01-01 01:00:01.0" location="test_location2" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="11" title="test_new2" description="test_description2" date="1970-01-01 01:00:01.0" location="test_location2" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event eventID="14" title="test_neblabla" description="test_description2" date="1970-01-01 01:00:01.0" location="test_location2" categoryID_FK="1" pictureID_FK="1" userID_FK="1"/>
+  <Event_Sub eventID_FK="1" sub_categoryID_FK="1"/>
+  <Event_Sub eventID_FK="1" sub_categoryID_FK="2"/>
+  <Messages messageID="1" message_content="blabla1" eventID_FK="1" userID_FK="1" date="1970-01-01 01:00:01.0"/>
+  <Messages messageID="2" message_content="blabla2" eventID_FK="1" userID_FK="1" date="1970-01-02 01:00:01.0"/>
+  <Picture pictureID="1" file_location="test_user_pic"/>
+  <Picture pictureID="2" file_location="test_cat_pic"/>
+  <Picture pictureID="3" file_location="test_sub_cat_pic"/>
+  <Picture pictureID="4" file_location="test_sub_cat_pic2"/>
+  <Picture pictureID="5" file_location="null"/>
+  <Picture pictureID="6" file_location="null"/>
+  <Sub_Category sub_categoryID="1" name="Gyser" default_picture_FK="3" categoryID_FK="1"/>
+  <Sub_Category sub_categoryID="2" name="Action" default_picture_FK="4" categoryID_FK="1"/>
+  <User userID="1" username="test1_username" email="test4@email.com" password_hash="test_pass" salt="test_salt" pictureID_FK="1"/>
+  <User userID="6" username="6666_username" email="6666@email.com" password_hash="8b933ceec1be81961efed01f5d078ba688a57165a5814095745965b598f9cafb1ac8c02df73bde3887baae436f9280e18b4b01f83915ced19b2a0a323076083b" salt="VNL9b3T2PHITv24Jk7asaEFRjF1pEwFZ" pictureID_FK="1"/>
+  <User userID="7" username="77_username" email="77@email.com" password_hash="d52a1273e6829604a9c35a81aa4fd77ee8cbf18b0bd3710948c8a8eca4f75e41e3048d8493620261b3fc84f078484011f6cd9e6da4ff69fc18d94ce0fc295a2f" salt="KmupMxLr7GsJ8GzJTzuZbRl38Tbzsqo1" pictureID_FK="1"/>
+</dataset>
