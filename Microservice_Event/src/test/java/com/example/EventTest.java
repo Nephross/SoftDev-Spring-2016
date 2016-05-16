@@ -33,7 +33,7 @@ import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@DatabaseSetup("todo-entries.xml")
+@DatabaseSetup("/event_entries.xml")
 
 public class EventTest {
     

@@ -5,11 +5,17 @@
  */
 package Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +34,30 @@ public class Category implements Serializable{
     @Column(name = "name")
     private String name;
     
-    @Column(name = "default_picture_FK")
-    private int defaultPictureID;
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "default_picture_FK")
+    @JsonIgnore //Loopback block code.
+    private Picture picture;
+
+    public Category() {
+    }
+    
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
+    
 }
