@@ -5,9 +5,6 @@
  */
 package microservice_Login;
 
-import Domain.User;
-import java.util.HashSet;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import microservice_Login_DBWrapper.DBWrapper;
 import org.springframework.http.HttpStatus;
@@ -37,7 +34,10 @@ public class Microservice_Login_Controller {
         
     @RequestMapping(value = "/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Login_Response> attemptLogin(@RequestBody Login_Attempt login_Attempt){
+        System.out.println("Calling DBwrapper for login attempt");
         Login_Response login_Response = DbWrapper.attemptLogin(login_Attempt);
+        
+        System.out.println("Loginattempt executed");
         return new ResponseEntity<Login_Response>(login_Response, HttpStatus.OK);
     }
     

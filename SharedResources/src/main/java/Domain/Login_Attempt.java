@@ -13,6 +13,15 @@ public class Login_Attempt {
     private String userName;
     private String password;
     
+    
+    public void setUserName(String input){
+        this.userName = input;
+    }
+    
+    public void setPassword(String input){
+        this.password = input;
+    }
+    
     public String getUserName(){
         return this.userName;
     }

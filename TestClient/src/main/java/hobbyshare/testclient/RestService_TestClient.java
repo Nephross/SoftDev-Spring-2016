@@ -9,7 +9,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONObject;
 
 /**
@@ -20,7 +23,10 @@ public class RestService_TestClient {
         
     public void testMethod(){
         String url="http://url.com";
-        URL object=new URL(url);
+        URL object;
+        try {
+            object = new URL(url);
+        
 
         HttpURLConnection con = (HttpURLConnection) object.openConnection();
         con.setDoOutput(true);
@@ -57,6 +63,13 @@ public class RestService_TestClient {
             System.out.println("" + sb.toString());  
         } else {
             System.out.println(con.getResponseMessage());  
+        }
+        
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(RestService_TestClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (Exception e) {
+            Logger.getLogger(RestService_TestClient.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
