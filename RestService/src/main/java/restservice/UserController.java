@@ -46,7 +46,7 @@ public class UserController {
     }
     
     @RequestMapping(method = RequestMethod.POST, value = "/create_User",  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser){
+    public @ResponseBody User createUser(@RequestBody User_CreateUser inputUser){
         
         return userClient.createUser(inputUser);
     }
@@ -59,8 +59,8 @@ public class UserController {
         return userClient.updateUser(id,inputUser);
     }
     
-    @RequestMapping(method = RequestMethod.POST, value = "/Login",  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Login_Response attemptLogin(@RequestParam(value = "loginAttempt") Login_Attempt loginAttempt){
+    @RequestMapping(method = RequestMethod.POST, value = "/login",  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Login_Response attemptLogin(@RequestBody Login_Attempt loginAttempt){
         
         return loginClient.attemptLogin(loginAttempt);
     }

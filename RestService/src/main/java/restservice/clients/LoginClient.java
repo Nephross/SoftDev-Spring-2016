@@ -11,6 +11,7 @@ import Domain.Login_Attempt;
 import Domain.Login_Response;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("microserviceLogin")
 public interface LoginClient {
     
-    @RequestMapping(method = RequestMethod.POST, value = "/attemptLogin", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Login_Response attemptLogin(@RequestParam(value = "loginAttempt") Login_Attempt loginAttempt);
+    @RequestMapping(method = RequestMethod.POST, value = "/attempt_Login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    Login_Response attemptLogin(@RequestBody Login_Attempt loginAttempt);
 }
 
 

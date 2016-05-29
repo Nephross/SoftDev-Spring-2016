@@ -32,7 +32,7 @@ public class Microservice_Login_Controller {
     }
    
         
-    @RequestMapping(value = "/Attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/attempt_Login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Login_Response> attemptLogin(@RequestBody Login_Attempt login_Attempt){
         System.out.println("Calling DBwrapper for login attempt");
         Login_Response login_Response = DbWrapper.attemptLogin(login_Attempt);

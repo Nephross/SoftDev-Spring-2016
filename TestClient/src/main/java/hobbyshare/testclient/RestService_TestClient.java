@@ -22,7 +22,7 @@ import org.json.simple.JSONObject;
 public class RestService_TestClient {
         
     public void testMethod(){
-        String url="http://url.com";
+        String url="http://localhost:8095/login";
         URL object;
         try {
             object = new URL(url);
@@ -36,17 +36,16 @@ public class RestService_TestClient {
         con.setRequestMethod("POST");
 
 
-        JSONObject cred = new JSONObject();
-        JSONObject auth= new JSONObject();
-        JSONObject parent= new JSONObject();
-        cred.put("username","adm");
-        cred.put("password", "pwd");
-        auth.put("tenantName", "adm");
-        auth.put("passwordCredentials", cred);
-        parent.put("auth", auth);
-
+        JSONObject loginAttempt = new JSONObject();
+        loginAttempt.put("password", "1234");
+        loginAttempt.put("userName","77_username");
+        
+        System.out.println(loginAttempt);
+        
+        System.out.println("Firing the JSON");
+        
         OutputStreamWriter wr= new OutputStreamWriter(con.getOutputStream());
-        wr.write(parent.toString());
+        wr.write(loginAttempt.toString());
         wr.flush();
 
         //display what returns the POST request

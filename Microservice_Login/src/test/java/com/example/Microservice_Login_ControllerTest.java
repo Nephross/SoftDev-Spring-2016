@@ -91,13 +91,13 @@ public class Microservice_Login_ControllerTest {
         testUser.setPictureID(pictureID);
         testUser.setPassword(password);
         
-        this.mockServer.expect(requestTo("/Attempt_Login"))
+        this.mockServer.expect(requestTo("/attempt_Login"))
                 .andExpect(method(HttpMethod.POST))
                 .andExpect(content().contentType(contentType))     
                 .andRespond(withStatus(HttpStatus.OK));
         
         ResponseEntity<Login_Response> result;
-        result = restTemplate.postForEntity("/Attempt_Login",testLogin, Login_Response.class);
+        result = restTemplate.postForEntity("/attempt_Login",testLogin, Login_Response.class);
         
         System.out.println("test_LoginAttampt_A result ====> "+result);
         this.mockServer.verify();

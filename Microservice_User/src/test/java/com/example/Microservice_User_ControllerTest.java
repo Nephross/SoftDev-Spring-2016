@@ -141,10 +141,10 @@ public class Microservice_User_ControllerTest {
     public void testGetAUser(){
         
         int userID = 1;
-        String username = "test1_username";
+        String username = "testuser1";
         User tsUser = this.userRepository.findOne(userID);
         Assert.assertNotNull("fail testing - expected not null", tsUser);
-        Assert.assertThat(username, is(tsUser.getUserName()));
+        Assert.assertThat(tsUser.getUserName(), is(username));
     }
     
     @Test
