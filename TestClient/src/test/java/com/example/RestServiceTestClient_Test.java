@@ -26,7 +26,8 @@ public class RestServiceTestClient_Test {
     public void Test_Method() {
         RestService_TestClient testClient = new RestService_TestClient();
         
-        testClient.testMethod();
+        //testClient.testMethod();
+        testClient.test_Login();
     }
     
 }

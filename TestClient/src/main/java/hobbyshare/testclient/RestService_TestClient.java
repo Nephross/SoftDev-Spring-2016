@@ -13,6 +13,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.JSONObject;
 
 /**
@@ -20,7 +25,31 @@ import org.json.simple.JSONObject;
  * @author peter
  */
 public class RestService_TestClient {
+       
+    public void test_Login(){
+        HttpClient httpClient = HttpClientBuilder.create().build();
         
+        JSONObject loginAttempt = new JSONObject();
+        loginAttempt.put("password", "1234");
+        loginAttempt.put("userName","77_username"); 
+
+        try {
+            HttpPost request = new HttpPost("http://localhost:8095/login");
+            StringEntity params = new StringEntity(loginAttempt.toString());
+            request.addHeader("content-type", "application/json");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+
+            System.out.println(response.toString());
+            
+        }catch (Exception ex) {
+            // handle exception here
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+    
+    
     public void testMethod(){
         String url="http://localhost:8095/login";
         URL object;

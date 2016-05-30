@@ -27,7 +27,7 @@ public interface UserClient {
     User getUser(@RequestParam(value = "userID") int userID);
     
     @RequestMapping(method = RequestMethod.POST, value = "/create_User", consumes = MediaType.APPLICATION_JSON_VALUE)
-    User createUser(@RequestParam(value = "inputUser") User_CreateUser inputUser);
+    User createUser(@RequestBody User_CreateUser inputUser);
     
     @RequestMapping(value = "/update_User/{userID}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     User updateUser(@PathVariable("userID")int id,@RequestBody User inputUser);
