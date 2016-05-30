@@ -5,14 +5,7 @@
  */
 package hobbyshare.testclient;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -28,16 +21,22 @@ import org.json.simple.JSONObject;
  * @author peter
  */
 public class RestService_TestClient {
-       
+    
+    private String hostName = "http://localhost:";
+    private String hostPort = "8095";
+    
+    
     public void test_Login(){
         HttpClient httpClient = HttpClientBuilder.create().build();
+        
+        String testURI = hostName + hostPort + "/login";
         
         JSONObject loginAttempt = new JSONObject();
         loginAttempt.put("password", "1234");
         loginAttempt.put("userName","77_username"); 
 
         try {
-            HttpPost request = new HttpPost("http://localhost:8095/login");
+            HttpPost request = new HttpPost(testURI);
             StringEntity params = new StringEntity(loginAttempt.toString());
             request.addHeader("content-type", "application/json");
             request.setEntity(params);
@@ -59,9 +58,10 @@ public class RestService_TestClient {
     public void test_GetUserProfile() {
         HttpClient httpClient = HttpClientBuilder.create().build();
         
+        String testURI = hostName + hostPort + "/get_User?userID=1";
 
         try {
-            HttpGet request = new HttpGet("http://localhost:8095/get_User?userID=1");
+            HttpGet request = new HttpGet(testURI);
             HttpResponse response = httpClient.execute(request);
 
             System.out.println("---Testing getUserProfile----");
