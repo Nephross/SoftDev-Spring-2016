@@ -61,7 +61,7 @@ public class RestService_TestClient {
         
 
         try {
-            HttpGet request = new HttpGet("http://localhost:8094/get_User?userID=1");
+            HttpGet request = new HttpGet("http://localhost:8095/get_User?userID=1");
             HttpResponse response = httpClient.execute(request);
 
             System.out.println("---Testing getUserProfile----");
