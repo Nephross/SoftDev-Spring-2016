@@ -28,6 +28,7 @@ public class RestServiceTestClient_Test {
         
         //testClient.testMethod();
         testClient.test_Login();
+        testClient.test_GetUserProfile();
     }
     
 }

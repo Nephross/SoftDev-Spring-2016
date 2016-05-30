@@ -13,11 +13,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONObject;
 
 /**
@@ -40,7 +43,33 @@ public class RestService_TestClient {
             request.setEntity(params);
             HttpResponse response = httpClient.execute(request);
 
+            System.out.println("---Testing Login----");
             System.out.println(response.toString());
+            HttpEntity entity = response.getEntity();
+            String responseString = EntityUtils.toString(entity, "UTF-8");
+            System.out.println(responseString);
+            System.out.println("----End of login Test----");
+        }catch (Exception ex) {
+            // handle exception here
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+    
+    public void test_GetUserProfile() {
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        
+
+        try {
+            HttpGet request = new HttpGet("http://localhost:8094/get_User?userID=1");
+            HttpResponse response = httpClient.execute(request);
+
+            System.out.println("---Testing getUserProfile----");
+            System.out.println(response.toString());
+            HttpEntity entity = response.getEntity();
+            String responseString = EntityUtils.toString(entity, "UTF-8");
+            System.out.println(responseString);
+            System.out.println("---End of getUserProfile test----");
             
         }catch (Exception ex) {
             // handle exception here
@@ -49,55 +78,4 @@ public class RestService_TestClient {
         }
     }
     
-    
-    public void testMethod(){
-        String url="http://localhost:8095/login";
-        URL object;
-        try {
-            object = new URL(url);
-        
-
-        HttpURLConnection con = (HttpURLConnection) object.openConnection();
-        con.setDoOutput(true);
-        con.setDoInput(true);
-        con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestProperty("Accept", "application/json");
-        con.setRequestMethod("POST");
-
-
-        JSONObject loginAttempt = new JSONObject();
-        loginAttempt.put("password", "1234");
-        loginAttempt.put("userName","77_username");
-        
-        System.out.println(loginAttempt);
-        
-        System.out.println("Firing the JSON");
-        
-        OutputStreamWriter wr= new OutputStreamWriter(con.getOutputStream());
-        wr.write(loginAttempt.toString());
-        wr.flush();
-
-        //display what returns the POST request
-
-        StringBuilder sb = new StringBuilder();  
-        int HttpResult = con.getResponseCode(); 
-        if (HttpResult == HttpURLConnection.HTTP_OK) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-            String line = null;  
-            while ((line = br.readLine()) != null) {  
-                sb.append(line + "\n");  
-            }
-            br.close();
-            System.out.println("" + sb.toString());  
-        } else {
-            System.out.println(con.getResponseMessage());  
-        }
-        
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(RestService_TestClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (Exception e) {
-            Logger.getLogger(RestService_TestClient.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
 }

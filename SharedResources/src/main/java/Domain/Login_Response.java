@@ -19,6 +19,16 @@ public class Login_Response {
     private int pictureID;
     private boolean loggedIn;
     
+    
+    public Login_Response(User inputUser, boolean inputBool){
+        setUser(inputUser);
+        setLoggedIn(inputBool);
+    }
+    
+    public Login_Response(){
+        
+    }
+    
     public void setUser(User inputUser) {
         this.userID = inputUser.getUserID();
         this.userName = inputUser.getUserName();
@@ -30,12 +40,25 @@ public class Login_Response {
         this.loggedIn = inputBool;
     }
     
-    public Login_Response(User inputUser, boolean inputBool){
-        setUser(inputUser);
-        setLoggedIn(inputBool);
-    }
+    
     
     public String getUserName(){
         return this.userName;
+    }
+    
+    public int getUserID(){
+        return this.userID;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public int getPictureID() {
+        return this.pictureID;
+    }
+    
+    public boolean getLoggedIn() {
+        return this.loggedIn;
     }
 }

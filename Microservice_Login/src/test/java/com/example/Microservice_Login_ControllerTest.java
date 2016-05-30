@@ -93,8 +93,9 @@ public class Microservice_Login_ControllerTest {
         
         this.mockServer.expect(requestTo("/attempt_Login"))
                 .andExpect(method(HttpMethod.POST))
-                .andExpect(content().contentType(contentType))     
-                .andRespond(withStatus(HttpStatus.OK));
+                .andExpect(content().contentType(contentType))
+                .andRespond(withSuccess());
+               // .andRespond(withStatus(HttpStatus.OK));
         
         ResponseEntity<Login_Response> result;
         result = restTemplate.postForEntity("/attempt_Login",testLogin, Login_Response.class);
@@ -117,6 +118,12 @@ public class Microservice_Login_ControllerTest {
         testLogin.setPassword(password);
         
         Login_Response loginResponse = this.dbWrapper.attemptLogin(testLogin);
+        System.out.println("LoginResponse - UserName- : " + loginResponse.getUserName());
+        System.out.println("LoginResponse - UserID- : " + loginResponse.getUserID());
+        System.out.println("LoginResponse - email- : " + loginResponse.getEmail());
+        System.out.println("LoginResponse - PictureID- : " + loginResponse.getPictureID());
+        System.out.println("LoginResponse - LoggedIN- : " + loginResponse.getLoggedIn());
+        
         Assert.assertNotNull("Failed, expedted not null ==> "+ loginResponse);
         Assert.assertThat(username, is(loginResponse.getUserName()));
     }
